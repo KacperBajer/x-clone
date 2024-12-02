@@ -1,11 +1,18 @@
 'use client';
-import React, { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 type Options = 'foryou' | 'following';
 
 const PostTypeSwitch = () => {
   const [selected, setSelected] = useState<Options>('foryou');
 
+  const router = useRouter()
+  const path = usePathname()
+
+  useEffect(() => {
+    router.push(`${path}?mode=${selected}`)
+  }, [selected])
 
   return (
     <div className="w-full flex justify-center sticky top-4">

@@ -1,10 +1,18 @@
-import ImagesLayout from '@/components/ImagesLayout'
 import PostCard from '@/components/PostCard'
 import PostTypeSwitch from '@/components/PostTypeSwitch'
 import { posts } from '@/lib/constants'
+import { SearchParams } from 'next/dist/server/request/search-params'
 import React from 'react'
 
-const page = () => {
+type Props = {
+  searchParams: SearchParams
+}
+
+const page = async ({searchParams}: Props) => {
+
+  const params = await searchParams
+  const mode = params.mode
+
   return (
     <div className='flex-1 flex flex-col'>
       <PostTypeSwitch />

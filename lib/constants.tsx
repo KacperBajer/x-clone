@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdWorkspacePremium } from "react-icons/md";
 import { FaRegComment } from "react-icons/fa";
 
-type SideBarLink = {
+export type SideBarLink = {
     name: string
     href: string
     icon: ReactElement
