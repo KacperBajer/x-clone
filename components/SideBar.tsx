@@ -11,7 +11,7 @@ const SideBar = () => {
     const path = usePathname()
 
     return (
-    <div className='border-2 border-dark-100 p-4 rounded-md w-[250px] top-4 min-h-[calc(100vh-32px)] flex flex-col sticky'>
+    <div className='border-2 border-dark-100 p-4 rounded-md w-[250px] top-4 h-fit min-h-[calc(100vh-32px)] flex flex-col sticky'>
         <Image 
             alt=''
             src={'/X_logo.jpg'}

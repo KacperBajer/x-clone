@@ -4,7 +4,7 @@ import React from 'react'
 
 const RightBar = () => {
   return (
-    <div className='w-[350px] top-4 min-h-[calc(100vh-32px)] h-auto flex flex-col sticky gap-4'>
+    <div className='w-[350px] top-4 h-fit min-h-[calc(100vh-32px)] flex flex-col sticky gap-4'>
         <section className='w-full relative'> 
             <Image 
                 alt=''
