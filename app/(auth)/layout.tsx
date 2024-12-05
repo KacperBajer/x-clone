@@ -1,11 +1,19 @@
+import { getUser } from '@/lib/users';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 import React from 'react'
 
-const layout = ({
+const layout = async ({
     children,
   }: Readonly<{
     children: React.ReactNode;
   }>) => {
+
+    const user = await getUser()
+    if(user) {
+        redirect('/')
+    }
+
   return (
     <div className='flex h-screen bg-black text-white'>
         <div className='flex-1 flex justify-center items-center h-full'>

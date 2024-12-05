@@ -4,11 +4,14 @@ import Button from './UI/Button'
 import FormField from './UI/FormField'
 import { z } from 'zod'
 import { loginUser } from '@/lib/users'
+import { useRouter } from 'next/navigation'
 
 const SignInForm = () => {
 
     type FormErrors = Partial<Record<keyof FormData, string[]>>;
     type FormData = z.infer<typeof SignInSchema>;
+
+    const router = useRouter()
 
     const [formData, setFormData] = useState<FormData>({
         email: '',
@@ -47,6 +50,12 @@ const SignInForm = () => {
             return
         }
         const ans = await loginUser(formData.email, formData.password)
+        if(ans.status === 'failed') {
+            console.log(ans.error)
+            return
+        }
+        
+        router.push('/')
     }
     
   return (

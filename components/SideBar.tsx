@@ -3,15 +3,23 @@ import { SideBarLinks } from '@/lib/constants'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 import Button from './UI/Button'
+import { User } from '@/lib/types'
+import CreatePostPopup from './CreatePostPopup'
 
-const SideBar = () => {
+type Props = {
+    user: User
+}
+
+const SideBar = ({user}: Props) => {
   
     const path = usePathname()
+    const [showCreatePostPopup, setShowCreatePostPopup] = useState<User | false>(false)
 
     return (
     <div className='border-2 border-dark-100 p-4 rounded-md w-[250px] top-4 h-fit min-h-[calc(100vh-32px)] flex flex-col sticky'>
+        {showCreatePostPopup && <CreatePostPopup setShowPopup={setShowCreatePostPopup} />}
         <Image 
             alt=''
             src={'/X_logo.jpg'}
@@ -30,7 +38,7 @@ const SideBar = () => {
                     {item.name}
                 </Link>
             ))}
-            <Button text='Create post' className='mt-3 bg-blue-600' />
+            <Button onClick={() => setShowCreatePostPopup(user)} text='Create post' className='mt-3 bg-blue-600' />
         </section>
         
         <section>
@@ -43,7 +51,7 @@ const SideBar = () => {
                     className='w-10 h-10 rounded-full'
                 />
                 <div className='flex flex-col'>
-                    <p className='text-sm text-gray-100'>Username</p>
+                    <p className='text-sm text-gray-100'>{user.displayname}</p>
                     <button className='text-xs text-gray-400 text-left'>Logout</button>
                 </div>
             </div>    
